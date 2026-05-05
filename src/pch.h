@@ -1,6 +1,9 @@
 /*
  * feather204
- * Precompiled header
+ * pch.h
+ * 5/4/2026
+ *
+ * Precompiled Header
  */
 
 #ifndef NES_EMU_PCH_H
@@ -14,5 +17,6 @@
 #include <fstream>
 #include <memory>
 #include <ostream>
+#include <iomanip>
 
 #endif //NES_EMU_PCH_H
