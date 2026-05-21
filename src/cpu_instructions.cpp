@@ -355,3 +355,39 @@ void CPU::BVS(uint16_t addr) {
 	if (GetFlag(FLAG_OVERFLOW) == true)
 		pc = addr;
 }
+
+/**
+ * Compare A
+ * @param addr Address
+ */
+void CPU::CMP(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t result = a - mem;
+	SetFlag(FLAG_CARRY, a >= mem);
+	SetFlag(FLAG_ZERO, a == mem);
+	SetFlag(FLAG_NEGATIVE, result & 0x80);
+}
+
+/**
+ * Compare X
+ * @param addr Address
+ */
+void CPU::CPX(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t result = x - mem;
+	SetFlag(FLAG_CARRY, x >= mem);
+	SetFlag(FLAG_ZERO, x == mem);
+	SetFlag(FLAG_NEGATIVE, result & 0x80);
+}
+
+/**
+ * Compare Y
+ * @param addr Address
+ */
+void CPU::CPY(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t result = y - mem;
+	SetFlag(FLAG_CARRY, y >= mem);
+	SetFlag(FLAG_ZERO, y == mem);
+	SetFlag(FLAG_NEGATIVE, result & 0x80);
+}

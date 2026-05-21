@@ -120,6 +120,11 @@ private:
 	void BMI(uint16_t addr);
 	void BVC(uint16_t addr);
 	void BVS(uint16_t addr);
+
+	// Comparison
+	void CMP(uint16_t addr);
+	void CPX(uint16_t addr);
+	void CPY(uint16_t addr);
 };
 
 #endif //NES_EMU_CPU_H

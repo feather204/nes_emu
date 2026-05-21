@@ -133,6 +133,23 @@ void CPU::clock() {
 		case 0x50: BVC(addrRelative()); break;
 		case 0x70: BVS(addrRelative()); break;
 
+		case 0xC9: CMP(addrImmediate()); break;
+		case 0xC5: CMP(addrZeroPage()); break;
+		case 0xD5: CMP(addrZeroPageX()); break;
+		case 0xCD: CMP(addrAbsolute()); break;
+		case 0xDD: CMP(addrAbsoluteX()); break;
+		case 0xD9: CMP(addrAbsoluteY()); break;
+		case 0xC1: CMP(addrIndexedIndirect()); break;
+		case 0xD1: CMP(addrIndirectIndexed()); break;
+
+		case 0xE0: CPX(addrImmediate()); break;
+		case 0xE4: CPX(addrZeroPage()); break;
+		case 0xEC: CPX(addrAbsolute()); break;
+
+		case 0xC0: CPY(addrImmediate()); break;
+		case 0xC4: CPY(addrZeroPage()); break;
+		case 0xCC: CPY(addrAbsolute()); break;
+
 		default: break;
 	}
 }
