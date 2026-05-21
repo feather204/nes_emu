@@ -125,6 +125,12 @@ private:
 	void CMP(uint16_t addr);
 	void CPX(uint16_t addr);
 	void CPY(uint16_t addr);
+
+	// Bitwise
+	void AND(uint16_t addr);
+	void ORA(uint16_t addr);
+	void EOR(uint16_t addr);
+	void BIT(uint16_t addr);
 };
 
 #endif //NES_EMU_CPU_H

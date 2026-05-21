@@ -150,6 +150,36 @@ void CPU::clock() {
 		case 0xC4: CPY(addrZeroPage()); break;
 		case 0xCC: CPY(addrAbsolute()); break;
 
+		case 0x29: AND(addrImmediate()); break;
+		case 0x25: AND(addrZeroPage()); break;
+		case 0x35: AND(addrZeroPageX()); break;
+		case 0x2D: AND(addrAbsolute()); break;
+		case 0x3D: AND(addrAbsoluteX()); break;
+		case 0x39: AND(addrAbsoluteY()); break;
+		case 0x21: AND(addrIndexedIndirect()); break;
+		case 0x31: AND(addrIndirectIndexed()); break;
+
+		case 0x09: ORA(addrImmediate()); break;
+		case 0x05: ORA(addrZeroPage()); break;
+		case 0x15: ORA(addrZeroPageX()); break;
+		case 0x0D: ORA(addrAbsolute()); break;
+		case 0x1D: ORA(addrAbsoluteX()); break;
+		case 0x19: ORA(addrAbsoluteY()); break;
+		case 0x01: ORA(addrIndexedIndirect()); break;
+		case 0x11: ORA(addrIndirectIndexed()); break;
+
+		case 0x49: EOR(addrImmediate()); break;
+		case 0x45: EOR(addrZeroPage()); break;
+		case 0x55: EOR(addrZeroPageX()); break;
+		case 0x4D: EOR(addrAbsolute()); break;
+		case 0x5D: EOR(addrAbsoluteX()); break;
+		case 0x59: EOR(addrAbsoluteY()); break;
+		case 0x41: EOR(addrIndexedIndirect()); break;
+		case 0x51: EOR(addrIndirectIndexed()); break;
+
+		case 0x24: BIT(addrZeroPage()); break;
+		case 0x2C: BIT(addrAbsolute()); break;
+
 		default: break;
 	}
 }

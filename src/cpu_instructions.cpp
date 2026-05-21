@@ -391,3 +391,45 @@ void CPU::CPY(uint16_t addr) {
 	SetFlag(FLAG_ZERO, y == mem);
 	SetFlag(FLAG_NEGATIVE, result & 0x80);
 }
+
+/**
+ * Bitwise AND
+ * @param addr Address
+ */
+void CPU::AND(uint16_t addr) {
+	uint8_t mem = read(addr);
+	a = a & mem;
+	updateZN(a);
+}
+
+/**
+ * Bitwise OR
+ * @param addr Address
+ */
+void CPU::ORA(uint16_t addr) {
+	uint8_t mem = read(addr);
+	a = a | mem;
+	updateZN(a);
+}
+
+/**
+ * Bitwise Exclusive OR
+ * @param addr Address
+ */
+void CPU::EOR(uint16_t addr) {
+	uint8_t mem = read(addr);
+	a = a ^ mem;
+	updateZN(a);
+}
+
+/**
+ * Bit Test
+ * @param addr Address
+ */
+void CPU::BIT(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t result = a & mem;
+	SetFlag(FLAG_ZERO, result == 0);
+	SetFlag(FLAG_OVERFLOW, mem & 0x40);
+	SetFlag(FLAG_NEGATIVE, mem & 0x80);
+}
