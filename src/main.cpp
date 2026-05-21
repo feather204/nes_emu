@@ -28,7 +28,7 @@ int main() {
 	// Test 2 - LDA sets zero flag
 	cpu.reset();
 	bus.write(0x0000, 0xA9); // lda immediate
-	bus.write(0x0001, 0x0); // value 0x10
+	bus.write(0x0001, 0x00); // value 0x0
 	cpu.clock();
 	std::cout << setw(30) << left << "Test 2 - LDA zero flag: "
 			  << (cpu.GetFlag(FLAG_ZERO) ? "PASS" : "FAIL") << std::endl;
@@ -65,6 +65,17 @@ int main() {
 	cpu.clock(); // RTS
 	std::cout << setw(30) << left << "Test 5 - JSR/RTS returns: "
 			  << (cpu.pc == 0x0003 ? "PASS" : "FAIL") << std::endl;
+
+	// Test 6 - BEQ
+	cpu.reset();
+	bus.write(0x0000, 0xA9);
+	bus.write(0x0001, 0x00);
+	bus.write(0x0002, 0xF0);
+	bus.write(0x0003, 0x0C);
+	cpu.clock();
+	cpu.clock();
+	std::cout << setw(30) << left << "Test 6 - BEQ returns: "
+			  << (cpu.pc == 0x0010 ? "PASS" : "FAIL") << std::endl;
 
 	return 0;
 }

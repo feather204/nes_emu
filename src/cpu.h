@@ -110,6 +110,16 @@ private:
 	void DEC(uint16_t addr);
 	void ADC(uint16_t addr);
 	void SBC(uint16_t addr);
+
+	// Branching
+	void BCC(uint16_t addr);
+	void BCS(uint16_t addr);
+	void BEQ(uint16_t addr);
+	void BNE(uint16_t addr);
+	void BPL(uint16_t addr);
+	void BMI(uint16_t addr);
+	void BVC(uint16_t addr);
+	void BVS(uint16_t addr);
 };
 
 #endif //NES_EMU_CPU_H

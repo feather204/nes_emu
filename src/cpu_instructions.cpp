@@ -284,3 +284,74 @@ void CPU::SBC(uint16_t addr) {
 	a = result & 0xFF;
 	updateZN(a);
 }
+
+/**
+ * Branch if Carry Clear
+ * @param addr Address
+ */
+void CPU::BCC(uint16_t addr) {
+	if (GetFlag(FLAG_CARRY) == false)
+		pc = addr;
+}
+
+/**
+ * Branch if Carry Set
+ * @param addr Address
+ */
+void CPU::BCS(uint16_t addr) {
+	if (GetFlag(FLAG_CARRY) == true)
+		pc = addr;
+}
+
+/**
+ * Branch if Equal
+ * @param addr Address
+ */
+void CPU::BEQ(uint16_t addr) {
+	if (GetFlag(FLAG_ZERO) == true)
+		pc = addr;
+}
+
+/**
+ * Branch if Minus
+ * @param addr Address
+ */
+void CPU::BMI(uint16_t addr) {
+	if (GetFlag(FLAG_NEGATIVE) == true)
+		pc = addr;
+}
+
+/**
+ * Branch if Not Equal
+ * @param addr Address
+ */
+void CPU::BNE(uint16_t addr) {	if (GetFlag(FLAG_ZERO) == false)
+		pc = addr;
+}
+
+/**
+ * Branch if Plus
+ * @param addr Address
+ */
+void CPU::BPL(uint16_t addr) {
+	if (GetFlag(FLAG_NEGATIVE) == false)
+		pc = addr;
+}
+
+/**
+ * Branch if Overflow Clear
+ * @param addr Address
+ */
+void CPU::BVC(uint16_t addr) {
+	if (GetFlag(FLAG_OVERFLOW) == false)
+		pc = addr;
+}
+
+/**
+ * Branch if Overflow Set
+ * @param addr Address
+ */
+void CPU::BVS(uint16_t addr) {
+	if (GetFlag(FLAG_OVERFLOW) == true)
+		pc = addr;
+}

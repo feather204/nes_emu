@@ -124,6 +124,15 @@ void CPU::clock() {
 		case 0xE1: SBC(addrIndexedIndirect()); break;
 		case 0xF1: SBC(addrIndirectIndexed()); break;
 
+		case 0x90: BCC(addrRelative()); break;
+		case 0xB0: BCS(addrRelative()); break;
+		case 0xF0: BEQ(addrRelative()); break;
+		case 0x30: BMI(addrRelative()); break;
+		case 0xD0: BNE(addrRelative()); break;
+		case 0x10: BPL(addrRelative()); break;
+		case 0x50: BVC(addrRelative()); break;
+		case 0x70: BVS(addrRelative()); break;
+
 		default: break;
 	}
 }
