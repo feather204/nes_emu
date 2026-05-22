@@ -131,6 +131,22 @@ private:
 	void ORA(uint16_t addr);
 	void EOR(uint16_t addr);
 	void BIT(uint16_t addr);
+
+	// Shifting
+	void ASL(uint16_t addr);
+	void ASL_ACC();
+	void LSR(uint16_t addr);
+	void LSR_ACC();
+	void ROL(uint16_t addr);
+	void ROL_ACC();
+	void ROR(uint16_t addr);
+	void ROR_ACC();
+
+	// Stack
+	void PHA();
+	void PLA();
+	void PLP();
+	void PHP();
 };
 
 #endif //NES_EMU_CPU_H

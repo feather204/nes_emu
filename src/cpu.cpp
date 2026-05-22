@@ -180,6 +180,35 @@ void CPU::clock() {
 		case 0x24: BIT(addrZeroPage()); break;
 		case 0x2C: BIT(addrAbsolute()); break;
 
+		case 0x0A: ASL_ACC(); break;
+		case 0x06: ASL(addrZeroPage()); break;
+		case 0x16: ASL(addrZeroPageX()); break;
+		case 0x0E: ASL(addrAbsolute()); break;
+		case 0x1E: ASL(addrAbsoluteX()); break;
+
+		case 0x4A: LSR_ACC(); break;
+		case 0x46: LSR(addrZeroPage()); break;
+		case 0x56: LSR(addrZeroPageX()); break;
+		case 0x4E: LSR(addrAbsolute()); break;
+		case 0x5E: LSR(addrAbsoluteX()); break;
+
+		case 0x2A: ROL_ACC(); break;
+		case 0x26: ROL(addrZeroPage()); break;
+		case 0x36: ROL(addrZeroPageX()); break;
+		case 0x2E: ROL(addrAbsolute()); break;
+		case 0x3E: ROL(addrAbsoluteX()); break;
+
+		case 0x6A: ROR_ACC(); break;
+		case 0x66: ROR(addrZeroPage()); break;
+		case 0x76: ROR(addrZeroPageX()); break;
+		case 0x6E: ROR(addrAbsolute()); break;
+		case 0x7E: ROR(addrAbsoluteX()); break;
+
+		case 0x48: PHA(); break;
+		case 0x68: PLA(); break;
+		case 0x28: PLP(); break;
+		case 0x08: PHP(); break;
+
 		default: break;
 	}
 }

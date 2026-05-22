@@ -433,3 +433,122 @@ void CPU::BIT(uint16_t addr) {
 	SetFlag(FLAG_OVERFLOW, mem & 0x40);
 	SetFlag(FLAG_NEGATIVE, mem & 0x80);
 }
+
+/**
+ * Arithmetic Shift Left
+ * @param addr Address
+ */
+void CPU::ASL(uint16_t addr) {
+	uint8_t mem = read(addr);
+	SetFlag(FLAG_CARRY, mem & 0x80);
+	mem = mem << 1;
+	write(addr, mem);
+	updateZN(mem);
+}
+
+/**
+ * Arithmetic Shift Left (Accumulator)
+ */
+void CPU::ASL_ACC() {
+	SetFlag(FLAG_CARRY, a & 0x80);
+	a = a << 1;
+	updateZN(a);
+}
+
+/**
+ * Logical Shift Right
+ * @param addr Address
+ */
+void CPU::LSR(uint16_t addr) {
+	uint8_t mem = read(addr);
+	SetFlag(FLAG_CARRY, mem & 0x01);
+	mem = mem >> 1;
+	write(addr, mem);
+	SetFlag(FLAG_ZERO, mem == 0);
+	SetFlag(FLAG_NEGATIVE, false);
+}
+
+/**
+ * Logical Shift Right (Accumulator)
+ */
+void CPU::LSR_ACC() {
+	SetFlag(FLAG_CARRY, a & 0x01);
+	a = a >> 1;
+	SetFlag(FLAG_ZERO, a == 0);
+	SetFlag(FLAG_NEGATIVE, false);
+}
+
+/**
+ * Rotate Left
+ * @param addr Address
+ */
+void CPU::ROL(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t carry = GetFlag(FLAG_CARRY);
+	SetFlag(FLAG_CARRY, mem & 0x80);
+	mem = (mem << 1) | carry;
+	write(addr, mem);
+	updateZN(mem);
+}
+
+/**
+ * Rotate Left (Accumulator)
+ */
+void CPU::ROL_ACC() {
+	uint8_t carry = GetFlag(FLAG_CARRY);
+	SetFlag(FLAG_CARRY, a & 0x80);
+	a = (a << 1) | carry;
+	updateZN(a);
+}
+
+/**
+ * Rotate Right
+ * @param addr Address
+ */
+void CPU::ROR(uint16_t addr) {
+	uint8_t mem = read(addr);
+	uint8_t carry = GetFlag(FLAG_CARRY);
+	SetFlag(FLAG_CARRY, mem & 0x01);
+	mem = (mem >> 1) | (carry << 7);
+	write(addr, mem);
+	updateZN(mem);
+}
+
+/**
+ * Rotate Right (Accumulator)
+ */
+void CPU::ROR_ACC() {
+	uint8_t carry = GetFlag(FLAG_CARRY);
+	SetFlag(FLAG_CARRY, a & 0x01);
+	a = (a >> 1) | (carry << 7);
+	updateZN(a);
+}
+
+/**
+ * Push A
+ */
+void CPU::PHA() {
+	push(a);
+}
+
+/**
+ * Pull A
+ */
+void CPU::PLA() {
+	a = pull();
+	updateZN(a);
+}
+
+/**
+ * Pull Processor Status
+ */
+void CPU::PLP() {
+	status = pull();
+}
+
+/**
+ * Push Processor Status
+ */
+void CPU::PHP() {
+	push(status | FLAG_BREAK | FLAG_UNUSED);
+}
