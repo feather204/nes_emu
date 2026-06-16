@@ -209,6 +209,8 @@ void CPU::clock() {
 		case 0x28: PLP(); break;
 		case 0x08: PHP(); break;
 
+		case 0x00: BRK(); break;
+		case 0x40: RTI(); break;
 		default: break;
 	}
 }

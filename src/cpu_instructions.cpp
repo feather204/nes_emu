@@ -552,3 +552,26 @@ void CPU::PLP() {
 void CPU::PHP() {
 	push(status | FLAG_BREAK | FLAG_UNUSED);
 }
+
+/**
+ * Break (software IRQ)
+ */
+void CPU::BRK() {
+	push(pc >> 8); // high
+	push(pc & 0xFF); // low
+	push(status | FLAG_BREAK | FLAG_UNUSED);
+	uint8_t lo = read(0xFFFE);
+	uint8_t hi = read(0xFFFF);
+	pc = (hi << 8) | lo;
+	SetFlag(FLAG_INTERRUPT, true);
+}
+
+/**
+ * Return from interrupt
+ */
+void CPU::RTI() {
+	status = pull();
+	uint8_t lo = pull();
+	uint8_t hi = pull();
+	pc = (hi << 8) | lo;
+}

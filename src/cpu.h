@@ -147,6 +147,10 @@ private:
 	void PLA();
 	void PLP();
 	void PHP();
+
+	// Interrupts
+	void BRK();
+	void RTI();
 };
 
 #endif //NES_EMU_CPU_H
